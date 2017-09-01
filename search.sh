@@ -21,19 +21,30 @@ clear
 if [ $CHSEARCH -eq 1 ] || [ $CHSEARCH -gt 0 ]
 then
 	clear
-	echo -n "USER "
-	echo -n $(grep -o $1 /home/$(whoami)/.shlib-search.log)
-	echo " IS registered in the catalog.."
-	read -s -n1
+	echo "${bold}${blue}>>>>${gold}>>>>${green}>>>>${reset}" | pv -qL 10
+	sleep 3
 	clear
-else
-	clear
-	echo -n "USER "
-	echo -n "$1"
-	echo " IS NOT registered in the catalog.."
+	echo -n "[ "
+	echo -n "${bold}${blue}$1${reset}"
+	echo -n " = ${bold}${green}TRUE${reset}"
+	echo " ]"
 	read -s -n1
 	clear
 	rm /home/$(whoami)/.shlib-search.log
+	clear
+else
+	clear
+	echo "${bold}${blue}>>>>${gold}>>>>${green}>>>>${reset}" | pv -qL 10
+	sleep 3
+	clear
+	echo -n "[ "
+	echo -n "${bold}${blue}$1${reset}"
+	echo -n " = ${bold}${red}FALSE${reset}"
+	echo " ]"
+	read -s -n1
+	clear
+	rm /home/$(whoami)/.shlib-search.log
+	clear
 fi
 
 clear
